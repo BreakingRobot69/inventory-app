@@ -1,5 +1,4 @@
 import styled from 'styled-components/native'
-import { View } from 'react-native'
 import { get } from 'lodash'
 import Touchable from '../Touchable'
 

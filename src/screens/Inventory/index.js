@@ -1,23 +1,34 @@
 import React, { useCallback } from 'react'
+import { View } from 'react-native'
 import { useFocusEffect, useNavigation } from '@react-navigation/core'
-import InventoryList from '../../components/organisms/InventoryList'
+
 import Container from '../../components/atoms/Container'
-import { Ionicons } from '@expo/vector-icons'
+import InventoryList from '../../components/organisms/InventoryList'
+import IconButton from '../../components/molecules/IconButton'
 
 const Inventory = () => {
   const navigation = useNavigation()
   useFocusEffect(
     useCallback(() => {
+      const headerRight = (props) => <IconButton icon='ios-add-circle' size={28} color='blue' {...props} />
+
       navigation.setOptions({
         headerLargeTitle: true,
-        headerRight: () => <Ionicons name="ios-add-circle" size={24} color="black" />,
+        headerRight,
         searchBar: {
         // search bar options
         }
       })
     }, [navigation]))
   return (
-    <Container color='paleGrey'>
+    <Container color='paleGrey' edges={['right', 'bottom', 'left']}>
+      {/**
+         * This is a View aiming to force headerLargeTitle to stay and to avoid a bug
+         * from react-native-screens that render the small and center title instead of
+         * the headerLargeTitle
+         * c.f.: https://github.com/software-mansion/react-native-screens/issues/649
+       */}
+      <View />
       <InventoryList />
     </Container>
   )

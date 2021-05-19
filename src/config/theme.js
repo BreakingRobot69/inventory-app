@@ -1,7 +1,8 @@
 const theme = {
   fonts: {
     title: 'Avenir-Heavy',
-    content: 'Avenir-Medium'
+    content: 'Avenir-Medium',
+    input: 'Avenir-Roman'
   },
   colors: {
     black: 'rgb(2, 2, 2)',
@@ -11,7 +12,8 @@ const theme = {
     paleGreyTwo: 'rgb(239, 242, 249)',
     paleGreyThree: 'rgb(222, 224, 230)',
     paleGrey: 'rgb(246, 247, 252)',
-    blueyGrey: 'rgb(147, 153, 172)'
+    blueyGrey: 'rgb(147, 153, 172)',
+    blue: 'rgb(0, 66, 218)'
   },
   fontSize: {
     xs: 11,
