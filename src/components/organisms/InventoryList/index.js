@@ -1,15 +1,28 @@
 import * as React from 'react'
-import { FlatList, View, Platform } from 'react-native'
+import { FlatList } from 'react-native'
 import InventoryCard from '../../molecules/InventoryCard'
 
-const picsumImages = new Array(11).fill('http://placeimg.com/640/360/any')
+const data = new Array(10).fill({
+  image: 'http://placeimg.com/640/360/any',
+  title: 'test',
+  subtitle: '200 000€'
+})
 
-const renderItem = ({ item }) => <InventoryCard />
+const renderItem = ({ item }) => {
+  const { image, title, subtitle } = item
+
+  return <InventoryCard image={image} title={title} subtitle={subtitle} />
+}
 
 const InventoryList = () => {
-  const [images, setImages] = React.useState(picsumImages)
+  const [images, setImages] = React.useState(data)
   return (
-    <FlatList data={images} numColumns={2} renderItem={renderItem} columnWrapperStyle={{ justifyContent: 'space-between' }} />
+    <FlatList
+      data={images}
+      numColumns={2}
+      renderItem={renderItem}
+      columnWrapperStyle={{ justifyContent: 'space-between', marginTop: 20, paddingRight: 10, paddingLeft: 10 }}
+    />
   )
 }
 

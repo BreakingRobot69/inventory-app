@@ -20,8 +20,10 @@ const theme = {
     xlarge: 34
   },
   spacings: {
-    xxs: 4,
-    xs: 8
+    small: 5,
+    medium: 10,
+    large: 20,
+    xlarge: 30
   }
 }
 

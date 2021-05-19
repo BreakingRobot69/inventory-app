@@ -8,9 +8,7 @@ const Stack = createNativeStackNavigator()
 const AppStack = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Inventory' component={Inventory} options={{
-        headerLargeTitle: true
-      }} />
+      <Stack.Screen name='Inventory' component={Inventory} />
     </Stack.Navigator>
   )
 }
