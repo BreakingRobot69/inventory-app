@@ -1,4 +1,8 @@
 const theme = {
+  fonts: {
+    title: 'Avenir-Heavy',
+    content: 'Avenir-Medium'
+  },
   colors: {
     black: 'rgb(2, 2, 2)',
     black12: 'rgba(0, 0, 0, 0.12)',
