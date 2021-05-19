@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
+import { View } from 'react-native'
 import { get, map } from 'lodash'
 
 import Picker from '../../atoms/Picker'
@@ -27,7 +28,7 @@ const AppInput = ({ label, picker, value, options, onChange, ...props }) => {
     )
   }
 
-  return <TextField label={'label'} value={value} {...props} />
+  return <TextField label={label} value={value} {...props} />
 }
 
 AppInput.propTypes = {
@@ -49,15 +50,19 @@ AppInput.defaultProps = {
   onChange: () => {}
 }
 
-const FormInput = ({ label, error, ...props }) => {
+const InputWrapper = styled(View)`
+  padding-bottom: 20px;
+`
+
+const FormInput = ({ value, label, error, ...props }) => {
   return (
-    <>
+    <InputWrapper>
       <InputLabel type='content' size='xs' color='blueyGrey'>{label}</InputLabel>
       <AppInput
         testID='form-input'
         label={label}
         {...props} />
-    </>
+    </InputWrapper>
   )
 }
 
@@ -67,7 +72,6 @@ FormInput.propTypes = {
 }
 
 FormInput.defaultProps = {
-  placeholder: 'cc',
   error: null
 }
 

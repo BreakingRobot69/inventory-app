@@ -5,12 +5,16 @@ import { useFocusEffect, useNavigation } from '@react-navigation/core'
 import Container from '../../components/atoms/Container'
 import InventoryList from '../../components/organisms/InventoryList'
 import IconButton from '../../components/molecules/IconButton'
+import { useSelector } from 'react-redux'
+import { itemList } from '../../redux/selectors/item'
 
 const Inventory = () => {
   const navigation = useNavigation()
+  const items = useSelector(itemList)
   useFocusEffect(
     useCallback(() => {
-      const headerRight = (props) => <IconButton icon='ios-add-circle' size={28} color='blue' {...props} />
+      const onPress = () => navigation.navigate('InventoryModal')
+      const headerRight = (props) => <IconButton icon='ios-add-circle' size={28} color='blue' onPress={onPress} {...props} />
 
       navigation.setOptions({
         headerLargeTitle: true,
@@ -29,7 +33,7 @@ const Inventory = () => {
          * c.f.: https://github.com/software-mansion/react-native-screens/issues/649
        */}
       <View />
-      <InventoryList />
+      <InventoryList items={items} />
     </Container>
   )
 }

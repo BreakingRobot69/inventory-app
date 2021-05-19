@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { TextInput as NativeTextInput } from 'react-native'
 import { get } from 'lodash'
+import { useTheme } from '@react-navigation/native'
 
 const TextInput = styled(NativeTextInput)`
   font-family: ${({ type = 'input', theme }) => get(theme, `fonts.${type}`, 'Avenir-Roman')};
@@ -27,8 +28,10 @@ TextInput.defaultProps = {
 }
 
 const TextField = ({ label, type, size, color, onFocus, onBlur, ...textInputProps }) => {
+  const theme = useTheme()
   const [focused, setFocused] = useState(false)
   const borderColor = focused ? 'blue' : 'paleGreyThree'
+  const placeholderColor = get(theme, 'colors.blueyGrey')
 
   const handleFocus = event => {
     setFocused(true)
@@ -45,6 +48,7 @@ const TextField = ({ label, type, size, color, onFocus, onBlur, ...textInputProp
     size={size}
     color={color}
     placeholder={label}
+    placeholderTextColor={placeholderColor}
     onBlur={handleBlur}
     onFocus={handleFocus}
     borderColor={borderColor}
