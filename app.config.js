@@ -9,7 +9,6 @@ export default {
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/icon.png',
-  userInterfaceStyle: 'automatic',
   backgroundColor: '#000000',
   updates: {
     fallbackToCacheTimeout: 0
@@ -21,7 +20,7 @@ export default {
   ios: {
     requireFullScreen: true,
     bundleIdentifier: 'fr.unkwownrobot.inventory',
-    buildNumber: '1.0.0',
+    buildNumber: '1.0.0'
   },
   android: {
     package: 'fr.unkwownrobot.inventory',
