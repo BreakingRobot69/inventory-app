@@ -1,4 +1,5 @@
 import * as React from 'react'
+import PropTypes from 'prop-types'
 import { FlatList } from 'react-native'
 import InventoryCard from '../../molecules/InventoryCard'
 
@@ -20,7 +21,11 @@ const InventoryList = ({ items }) => {
 }
 
 InventoryList.propTypes = {
+  items: PropTypes.array
+}
 
+InventoryList.defaultProps = {
+  items: []
 }
 
 export default InventoryList

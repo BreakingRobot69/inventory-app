@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { useTheme } from 'styled-components/native'
 import { get, isEmpty } from 'lodash'
 
@@ -34,6 +35,17 @@ const ActionBox = ({ text, align, onPress, icon, iconSize, iconColor, borderColo
       </Text>
     </Box>
   )
+}
+
+ActionBox.propTypes = {
+  align: PropTypes.string,
+  onPress: PropTypes.func,
+  text: PropTypes.string,
+  icon: PropTypes.string,
+  iconSize: PropTypes.number,
+  textProps: PropTypes.object,
+  iconColor: PropTypes.string,
+  borderColor: PropTypes.string
 }
 
 ActionBox.defaultProps = {
