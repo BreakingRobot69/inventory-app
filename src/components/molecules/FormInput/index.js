@@ -2,17 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
-import { get, map } from 'lodash'
+import { map } from 'lodash'
 
 import Picker from '../../atoms/Picker'
-import Text from '../../atoms/Text'
 import TextField from '../../atoms/TextField'
+import InputLabel from '../../atoms/InputLabel'
 
-const InputLabel = styled(Text)`
-  padding-bottom: ${({ theme }) => get(theme, 'spacings.medium', 10)};
-`
-
-const AppInput = ({ label, picker, value, options, onChange, ...props }) => {
+const AppInput = ({ label, picker, value, options, ...props }) => {
   if (picker) {
     const items = map(options, ({ value, label }) => ({
       label,
@@ -21,9 +17,9 @@ const AppInput = ({ label, picker, value, options, onChange, ...props }) => {
 
     return (
       <Picker
+        placeholder={label}
         items={items}
         value={value}
-        onValueChange={onChange}
         {...props} />
     )
   }
@@ -38,8 +34,7 @@ AppInput.propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired
-  })),
-  onChange: PropTypes.func
+  }))
 }
 
 AppInput.defaultProps = {
@@ -54,10 +49,10 @@ const InputWrapper = styled(View)`
   padding-bottom: 20px;
 `
 
-const FormInput = ({ value, label, error, ...props }) => {
+const FormInput = ({ label, error, ...props }) => {
   return (
     <InputWrapper>
-      <InputLabel type='content' size='xs' color='blueyGrey'>{label}</InputLabel>
+      <InputLabel label={label} />
       <AppInput
         testID='form-input'
         label={label}
@@ -72,6 +67,7 @@ FormInput.propTypes = {
 }
 
 FormInput.defaultProps = {
+  label: '',
   error: null
 }
 
