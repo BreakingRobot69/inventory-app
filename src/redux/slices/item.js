@@ -12,7 +12,7 @@ export default createSlice({
       category: '',
       description: '',
       invoice: '',
-      timestamp: ''
+      purchaseDate: ''
     }, {
       id: 2,
       contractId: 1,
@@ -22,7 +22,7 @@ export default createSlice({
       category: '',
       description: '',
       invoice: '',
-      timestamp: ''
+      purchaseDate: ''
     }]
   },
   reducers: {},
