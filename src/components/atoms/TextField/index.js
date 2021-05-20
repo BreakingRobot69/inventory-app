@@ -10,6 +10,7 @@ const TextInput = styled(NativeTextInput)`
   font-size: ${({ size = 'medium', theme }) => get(theme, `fontSize.${size}`, 16)}px;
   color: ${({ color = 'black', theme }) => get(theme, `colors.${color}`, 'rgb(2, 2, 2)')}
   border-bottom-width: 2px;
+  padding-vertical: 5px;
   border-bottom-color: ${({ borderColor = 'black', theme }) => get(theme, `colors.${borderColor}`, 'rgb(2, 2, 2)')}
 `
 
@@ -31,16 +32,17 @@ const TextField = ({ label, type, size, color, onFocus, onBlur, ...textInputProp
   const theme = useTheme()
   const [focused, setFocused] = useState(false)
   const borderColor = focused ? 'blue' : 'paleGreyThree'
+
   const placeholderColor = get(theme, 'colors.blueyGrey')
 
   const handleFocus = event => {
     setFocused(true)
-    return onFocus
+    return onFocus(event)
   }
 
   const handleBlur = event => {
     setFocused(false)
-    return onBlur
+    return onBlur(event)
   }
 
   return <TextInput
@@ -48,15 +50,16 @@ const TextField = ({ label, type, size, color, onFocus, onBlur, ...textInputProp
     size={size}
     color={color}
     placeholder={label}
-    placeholderTextColor={placeholderColor}
     onBlur={handleBlur}
     onFocus={handleFocus}
     borderColor={borderColor}
+    placeholderTextColor={placeholderColor}
     {...textInputProps}
   />
 }
 
 TextField.propTypes = {
+  label: PropTypes.string,
   type: PropTypes.string,
   size: PropTypes.string,
   color: PropTypes.string,
@@ -65,6 +68,7 @@ TextField.propTypes = {
 }
 
 TextField.defaultProps = {
+  label: '',
   type: 'input',
   size: 'medium',
   color: 'black',
