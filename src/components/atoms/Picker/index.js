@@ -8,7 +8,7 @@ import theme from '../../../config/theme'
 
 const { width, height } = Dimensions.get('window')
 
-const Picker = ({ style, placeholder, disabled, ...props }) => {
+const Picker = ({ style, placeholder, ...props }) => {
   const containerStyle = {
     position: 'relative',
     minWidth: '100%',
@@ -16,7 +16,6 @@ const Picker = ({ style, placeholder, disabled, ...props }) => {
     backgroundColor: 'transparent',
     borderBottomWidth: 2,
     borderBottomColor: get(theme, 'colors.paleGreyThree', 'rgb(222, 224, 230)'),
-    marginBottom: 20,
     ...get(style, 'containerStyle', {})
   }
 
@@ -58,7 +57,6 @@ const Picker = ({ style, placeholder, disabled, ...props }) => {
   const pickerPlaceholder = isEmpty(placeholder) ? {} : { label: placeholder, value: null }
   return (
     <RNPickerSelect
-      disabled={disabled}
       style={customStyle}
       fixAndroidTouchableBug={true}
       useNativeAndroidPickerStyle={false}
@@ -70,7 +68,6 @@ const Picker = ({ style, placeholder, disabled, ...props }) => {
 Picker.propTypes = {
   items: PropTypes.array.isRequired,
   onValueChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
   style: PropTypes.object,
   placeholder: PropTypes.string
 }
