@@ -43,7 +43,10 @@ ItemForm.propTypes = {
     image: PropTypes.string,
     invoice: PropTypes.string
   }).isRequired,
-  errors: PropTypes.array.isRequired,
+  errors: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]).isRequired,
   setFieldValue: PropTypes.func.isRequired,
   handleBlur: PropTypes.func.isRequired,
   submitCount: PropTypes.number.isRequired
