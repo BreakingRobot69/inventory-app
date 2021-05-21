@@ -1,4 +1,4 @@
-import { get, isEqual, isString, reduce, toNumber } from 'lodash'
+import { get, trim, isEqual, isString, reduce, toNumber } from 'lodash'
 import { DateTime } from 'luxon'
 
 const defaultOptions = {
@@ -7,7 +7,7 @@ const defaultOptions = {
 
 export const useValidation = ({ options = defaultOptions }) => {
   const compareItems = ({ items = [], values = {} }) => {
-    const name = get(values, 'name')
+    const name = trim(get(values, 'name'))
     const category = get(values, 'category')
     const price = get(values, 'price')
     const purchaseDate = get(values, 'purchaseDate')
@@ -17,7 +17,7 @@ export const useValidation = ({ options = defaultOptions }) => {
       const end = DateTime.fromISO(item.purchaseDate)
       const sameDate = end.hasSame(start, 'day')
 
-      const sameName = isEqual(name, item.name)
+      const sameName = isEqual(name, trim(item.name))
       const samePrice = isEqual(price, item.price)
       const samePriceDate = (samePrice && isEqual(sameDate, true))
       const sameCategoryBuy = (samePriceDate && isEqual(category, item.category))

@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import styled from 'styled-components/native'
 import PropTypes from 'prop-types'
 import { Image, View } from 'react-native'
-import { isEmpty } from 'lodash'
+import { trim, isEmpty } from 'lodash'
 
 import Card from '../../atoms/Card'
 import Text from '../../atoms/Text'
@@ -30,6 +30,8 @@ const CardContent = styled(View)`
 `
 
 const CardItem = ({ image, title, subtitle, ...props }) => {
+  const displayTitle = useMemo(() => trim(title), [title])
+
   return (
     <ItemWrapper>
       <Card {...props}>
@@ -40,7 +42,7 @@ const CardItem = ({ image, title, subtitle, ...props }) => {
         )}
         <CardContent>
           <Text type='content' numberOfLines={2}>
-            {title}
+            {displayTitle}
           </Text>
           <Text type='content' size='small' color='blueyGrey'>
             {subtitle}

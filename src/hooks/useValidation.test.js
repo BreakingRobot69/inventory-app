@@ -25,6 +25,32 @@ describe('useValidation', () => {
 
       expect(value).toBeTruthy()
     })
+    it('should return true if the name has whitespaces', () => {
+      const { result } = renderHook(() => useValidation({
+        valueLimit: 40000
+      }))
+
+      const mockValues = {
+        name: '      test      ',
+        category: 1,
+        price: 1000,
+        purchaseDate: DateTime.now().toISODate()
+      }
+
+      const mockItems = [{
+        name: 'test',
+        category: 1,
+        price: 1000,
+        purchaseDate: DateTime.now().toISODate()
+      }]
+
+      const value = result.current.compareItems({
+        items: mockItems,
+        values: mockValues
+      })
+
+      expect(value).toBeTruthy()
+    })
     it('should return true on different category but same name', () => {
       const { result } = renderHook(() => useValidation({
         valueLimit: 40000

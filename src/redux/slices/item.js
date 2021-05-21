@@ -1,14 +1,18 @@
 import { createAction, createSlice } from '@reduxjs/toolkit'
-import { get, filter, isEqual, toNumber } from 'lodash'
+import { get, trim, filter, isEqual, toNumber } from 'lodash'
 import { DateTime } from 'luxon'
 
 export const addItem = createAction('items/add', (item) => {
-  const itemDate = get(item, 'purchaseDate')
+  const id = DateTime.now().toMillis()
+  const name = trim(get(item, 'name'))
+  const price = toNumber(get(item, 'price', 0))
+  const purchaseDate = DateTime.fromISO(get(item, 'purchaseDate')).toISODate()
   return {
     payload: {
-      id: DateTime.now().toMillis(),
-      purchaseDate: DateTime.fromISO(itemDate).toISODate(),
-      price: toNumber(get(item, 'price', 0)),
+      id,
+      name,
+      price,
+      purchaseDate,
       ...item
     }
   }
