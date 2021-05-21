@@ -57,7 +57,29 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.23.2"
+    "eslint-plugin-react": "^7.23.2",
+    "faker": "^5.5.3",
+    "jest": "^26.6.3",
+    "jest-expo": "^41.0.0",
+    "jest-styled-components": "^7.0.4",
+    "react-hooks-testing-library": "^0.6.0"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "verbose": true,
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|@react-native-community|expo(nent)?|@expo(nent)?/.*|@react-navigation|static-container|expo-constants|expo-web-browser|@unimodules|@codler/react-native-keyboard-aware-scroll-view|expo-linear-gradient|expo-linking|expo-permissions|unimodules-permissions-interface|expo-notifications|expo-application|expo-firebase-core|@sentry/react-native|sentry-expo|@react-native-picker)"
+    ],
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/config/**",
+      "!src/index.js",
+      "!**/node_modules/**"
+    ]
   },
   "private": true
 }
