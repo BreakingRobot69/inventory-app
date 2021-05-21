@@ -1,11 +1,14 @@
 import React, { useCallback } from 'react'
-import { useSelector } from 'react-redux'
 import { useFocusEffect, useNavigation } from '@react-navigation/core'
+import { useSelector } from 'react-redux'
+import { isEmpty } from 'lodash'
 
+import Text from '../../components/atoms/Text'
 import { itemList } from '../../redux/selectors/item'
 import Container from '../../components/atoms/Container'
 import IconButton from '../../components/molecules/IconButton'
 import InventoryList from '../../components/organisms/InventoryList'
+import Content from '../../components/atoms/Content'
 
 const Inventory = () => {
   const navigation = useNavigation()
@@ -23,6 +26,17 @@ const Inventory = () => {
         }
       })
     }, [navigation]))
+
+  if (isEmpty(items)) {
+    return (
+      <Container color='paleGrey' edges={['right', 'bottom', 'left']}>
+        <Content contentContainerStyle={{ flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+          <Text>You have no insured items in your inventory</Text>
+        </Content>
+      </Container>
+    )
+  }
+
   return (
     <Container color='paleGrey' edges={['right', 'bottom', 'left']}>
       <InventoryList items={items} />

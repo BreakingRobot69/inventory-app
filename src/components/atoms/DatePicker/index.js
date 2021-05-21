@@ -26,7 +26,7 @@ const DatePicker = ({ value, label, onValueChange }) => {
   const currentDate = DateTime.now().toJSDate()
   const darkTheme = colorScheme === 'dark'
 
-  const color = !isEmpty(value) ? 'blueyGrey' : 'black'
+  const color = isEmpty(value) ? 'blueyGrey' : 'black'
   const displayedText = !isEmpty(value)
     ? DateTime.fromISO(value).setLocale('en').toLocaleString(DateTime.DATE_FULL)
     : label
