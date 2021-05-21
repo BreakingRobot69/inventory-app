@@ -16,7 +16,7 @@ const DocumentBox = ({ name, text, icon, alignSelf, value, setFieldValue, ...pro
   })
 
   const onDocumentPress = async () => {
-    const options = ['Prendre une photo', 'Utiliser une photo existante', 'Annuler']
+    const options = ['Take a picture', 'Use an existing picture', 'Cancel']
     const cancelButtonIndex = 2
     await showActionSheetWithOptions({
       options,
