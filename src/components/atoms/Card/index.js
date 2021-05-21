@@ -7,6 +7,7 @@ const Card = styled(Touchable)`
   border-radius: 5px;
   background-color: white;
   box-shadow: ${({ theme }) => `0 10px 20px ${get(theme, 'colors.black12')}`}
+  elevation: 20;
 `
 
 export default Card
