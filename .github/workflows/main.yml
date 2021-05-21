@@ -1,0 +1,21 @@
+name: Expo Publish
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 13.x
+      - uses: expo/expo-github-action@v5
+        with:
+          expo-username: ${{ secrets.username }}
+          expo-password: ${{ secrets.password }}
+      - name: Install dependencies
+        uses: bahmutov/npm-install@HEAD
+      - run: expo publish
