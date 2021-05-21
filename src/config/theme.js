@@ -1,8 +1,10 @@
+import { Platform } from 'react-native'
+
 const theme = {
   fonts: {
-    title: 'Avenir-Heavy',
-    content: 'Avenir-Medium',
-    input: 'Avenir-Roman'
+    title: Platform.OS === 'ios' ? 'Avenir-Heavy' : 'Roboto',
+    content: Platform.OS === 'ios' ? 'Avenir-Medium' : 'Roboto',
+    input: Platform.OS === 'ios' ? 'Avenir-Roman' : 'Roboto'
   },
   colors: {
     black: 'rgb(2, 2, 2)',

@@ -3,8 +3,7 @@ import { get, isEqual } from 'lodash'
 
 const defaultImageOptions = {
   mediaTypes: ImagePicker.MediaTypeOptions.Images,
-  allowsEditing: true,
-  base64: true,
+  allowsEditing: false,
   quality: 0
 }
 

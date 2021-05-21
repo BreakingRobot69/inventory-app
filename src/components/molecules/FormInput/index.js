@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
-import { map, isEmpty, get } from 'lodash'
-import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import { map, isEmpty } from 'lodash'
 
-import Picker from '../../atoms/Picker'
-import TextField from '../../atoms/TextField'
 import Label from '../../atoms/Label'
-import DatePicker from '../../atoms/DatePicker'
+import Picker from '../../atoms/Picker'
 import DocumentBox from '../DocumentBox'
+import TextField from '../../atoms/TextField'
+import DatePicker from '../../atoms/DatePicker'
 
 const AppInput = ({ label, picker, date, document, options, ...props }) => {
   if (picker) {

@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { useFocusEffect, useNavigation } from '@react-navigation/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { get, reduce, toNumber } from 'lodash'
+import { get } from 'lodash'
 import { useFormik } from 'formik'
 import { Alert } from 'react-native'
 

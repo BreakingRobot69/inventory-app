@@ -5,10 +5,13 @@ import PropTypes from 'prop-types'
 import RNPickerSelect from 'react-native-picker-select'
 
 import theme from '../../../config/theme'
+import { useTheme } from 'styled-components/native'
 
 const { width, height } = Dimensions.get('window')
 
 const Picker = ({ style, placeholder, disabled, ...props }) => {
+  const theme = useTheme()
+
   const containerStyle = {
     position: 'relative',
     minWidth: '100%',
@@ -21,7 +24,7 @@ const Picker = ({ style, placeholder, disabled, ...props }) => {
 
   const commonInput = {
     color: get(theme, 'colors.black', 'rgb(222, 224, 230)'),
-    fontFamily: 'Avenir-Roman',
+    fontFamily: get(theme, 'fonts.input'),
     fontSize: 16,
     ...get(style, 'inputStyle', {})
   }

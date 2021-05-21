@@ -10,9 +10,8 @@ import { useCamera } from '../../../hooks/useCamera'
 const DocumentBox = ({ name, text, icon, alignSelf, value, setFieldValue, ...props }) => {
   const { showActionSheetWithOptions } = useActionSheet()
   const { launch } = useCamera({
-    mediaTypes: ImagePicker.MediaTypeOptions.All,
-    allowsEditing: true,
-    base64: true,
+    mediaTypes: ImagePicker.MediaTypeOptions.Images,
+    allowsEditing: false,
     quality: 0
   })
 

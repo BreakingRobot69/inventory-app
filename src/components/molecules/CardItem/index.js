@@ -13,8 +13,8 @@ const ItemWrapper = styled(View)`
 `
 
 const CardImage = styled(Image)`
-  width: 160px;
-  height: 160px;
+  flex: 1;
+  height: 158px;
   overflow: hidden;
   resizeMode: cover;
   border-top-left-radius: 5px;

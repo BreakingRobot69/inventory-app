@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { get, isEmpty } from 'lodash'
@@ -18,6 +19,7 @@ const DateInput = styled(Touchable)`
 
 const DatePicker = ({ value, label, onValueChange }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
+  const currentDate = DateTime.now()
   const displayedText = !isEmpty(value)
     ? DateTime.fromISO(value).setLocale('en').toLocaleString(DateTime.DATE_FULL)
     : label
@@ -45,12 +47,20 @@ const DatePicker = ({ value, label, onValueChange }) => {
       </DateInput>
       <DateTimePickerModal
         mode='date'
+        isDarkModeEnabled={true}
+        maximumDate={currentDate}
         isVisible={isDatePickerVisible}
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
       />
     </>
   )
+}
+
+DatePicker.propTypes = {
+  value: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  onValueChange: PropTypes.func.isRequired
 }
 
 export default DatePicker
