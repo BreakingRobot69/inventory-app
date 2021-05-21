@@ -9,7 +9,7 @@ export const useValidation = ({ options = defaultOptions }) => {
   const compareItems = ({ items = [], values = {} }) => {
     const name = trim(get(values, 'name'))
     const category = get(values, 'category')
-    const price = get(values, 'price')
+    const price = toNumber(get(values, 'price'))
     const purchaseDate = get(values, 'purchaseDate')
 
     return reduce(items, (acc, item) => {
