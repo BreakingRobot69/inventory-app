@@ -23,7 +23,7 @@ export const itemTextInputs = [{
 }, {
   name: 'price',
   label: 'Purchase Price',
-  keyboardType: 'numeric'
+  keyboardType: 'number-pad'
 }, {
   name: 'category',
   label: 'Category',
