@@ -38,7 +38,10 @@ const AppInput = ({ label, picker, date, document, options, ...props }) => {
 
 AppInput.propTypes = {
   label: PropTypes.string,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
   date: PropTypes.bool,
   picker: PropTypes.bool,
   document: PropTypes.bool,
@@ -80,7 +83,10 @@ const FormInput = ({ label, error, ...props }) => {
 
 FormInput.propTypes = {
   label: PropTypes.string,
-  error: PropTypes.string
+  error: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.bool
+  ])
 }
 
 FormInput.defaultProps = {
