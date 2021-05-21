@@ -7,13 +7,18 @@ export const addItem = createAction('items/add', (item) => {
   const name = trim(get(item, 'name'))
   const price = toNumber(get(item, 'price', 0))
   const purchaseDate = DateTime.fromISO(get(item, 'purchaseDate')).toISODate()
+
+  const formattedValues = {
+    id,
+    name,
+    price,
+    purchaseDate
+  }
+
   return {
     payload: {
-      id,
-      name,
-      price,
-      purchaseDate,
-      ...item
+      ...item,
+      ...formattedValues
     }
   }
 })
