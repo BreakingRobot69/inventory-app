@@ -9,12 +9,11 @@ import Text from '../../components/atoms/Text'
 import { addItem } from '../../redux/slices/item'
 import { itemList } from '../../redux/selectors/item'
 import Touchable from '../../components/atoms/Touchable'
+import { useValidation } from '../../hooks/useValidation'
 import ItemForm from '../../components/organisms/ItemForm'
-import Container from '../../components/atoms/Container'
 import IconButton from '../../components/molecules/IconButton'
 import itemTotalValue from '../../redux/selectors/item/itemTotalValue'
 import { itemSchema, itemTextInputs, documentInputs } from '../../forms/item'
-import { useValidation } from '../../hooks/useValidation'
 
 const InventoryModal = () => {
   const dispatch = useDispatch()

@@ -61,12 +61,12 @@ export const itemSchema = Yup.object().shape({
     .min(1, 'Required')
     .required('Required'),
   name: Yup.string()
-    .min(5, 'Too Short!')
+    .min(3, 'Too Short!')
     .max(100, 'Too Long!')
     .required('Required'),
   price: Yup.number()
-    .min(1000, 'Too Short!')
-    .max(40000, 'Too Long!')
+    .min(1000, 'Price must be over 500!')
+    .max(40000, 'Price should not exceed 40000!')
     .required('Required'),
   image: Yup.string().required('Required'),
   category: Yup.string().required('Required'),
