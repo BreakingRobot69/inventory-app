@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
+import { useColorScheme } from 'react-native-appearance'
 import { get, isEmpty } from 'lodash'
 import { DateTime } from 'luxon'
 
@@ -18,8 +19,12 @@ const DateInput = styled(Touchable)`
 `
 
 const DatePicker = ({ value, label, onValueChange }) => {
+  const colorScheme = useColorScheme()
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
+
   const currentDate = DateTime.now().toJSDate()
+  const darkTheme = colorScheme === 'dark'
   const displayedText = !isEmpty(value)
     ? DateTime.fromISO(value).setLocale('en').toLocaleString(DateTime.DATE_FULL)
     : label
@@ -47,7 +52,7 @@ const DatePicker = ({ value, label, onValueChange }) => {
       </DateInput>
       <DateTimePickerModal
         mode='date'
-        isDarkModeEnabled={true}
+        isDarkModeEnabled={darkTheme}
         maximumDate={currentDate}
         isVisible={isDatePickerVisible}
         onConfirm={handleConfirm}
