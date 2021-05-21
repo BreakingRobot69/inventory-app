@@ -1,11 +1,9 @@
 import React from 'react'
-import { get, isEmpty } from 'lodash'
+import { useTheme } from 'styled-components/native'
 import { Dimensions } from 'react-native'
+import { get, isEmpty } from 'lodash'
 import PropTypes from 'prop-types'
 import RNPickerSelect from 'react-native-picker-select'
-
-import theme from '../../../config/theme'
-import { useTheme } from 'styled-components/native'
 
 const { width, height } = Dimensions.get('window')
 
