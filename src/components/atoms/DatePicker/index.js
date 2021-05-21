@@ -19,7 +19,7 @@ const DateInput = styled(Touchable)`
 
 const DatePicker = ({ value, label, onValueChange }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false)
-  const currentDate = DateTime.now()
+  const currentDate = DateTime.now().toJSDate()
   const displayedText = !isEmpty(value)
     ? DateTime.fromISO(value).setLocale('en').toLocaleString(DateTime.DATE_FULL)
     : label
