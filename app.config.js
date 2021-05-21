@@ -1,6 +1,6 @@
 export default {
   name: 'Inventory',
-  slug: 'inventory-app',
+  slug: 'inventory',
   platforms: [
     'ios',
     'android',
