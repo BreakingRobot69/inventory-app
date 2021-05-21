@@ -1,4 +1,4 @@
-import { get, trim, isEqual, isString, reduce, toNumber } from 'lodash'
+import { get, trim, isEqual, isString, isEmpty, reduce, toNumber } from 'lodash'
 import { DateTime } from 'luxon'
 
 const defaultOptions = {
@@ -6,7 +6,11 @@ const defaultOptions = {
 }
 
 export const useValidation = ({ options = defaultOptions }) => {
-  const compareItems = ({ items = [], values = {} }) => {
+  const compareItems = ({ items, values }) => {
+    if (isEmpty(items) || isEmpty(values)) {
+      throw new Error('items or values cannot be empty')
+    }
+
     const name = trim(get(values, 'name'))
     const category = get(values, 'category')
     const price = toNumber(get(values, 'price'))
@@ -32,7 +36,11 @@ export const useValidation = ({ options = defaultOptions }) => {
     }, false)
   }
 
-  const checkValueExceed = ({ items = {}, value }) => {
+  const checkValueExceed = ({ items, value }) => {
+    if (isEmpty(items) || !value) {
+      throw new Error('items or value cannot be empty')
+    }
+
     const valueLimit = get(options, 'valueLimit', get(defaultOptions, 'valueLimit'))
     const price = isString(value) ? toNumber(value) : value
 

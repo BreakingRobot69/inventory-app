@@ -4,6 +4,25 @@ import { DateTime } from 'luxon'
 
 describe('useValidation', () => {
   describe('compareItems', () => {
+    it('should throw an exception on empty parameters', () => {
+      const { result } = renderHook(() => useValidation({
+        valueLimit: 40000
+      }))
+
+      expect(result.current.compareItems).toThrowError()
+    })
+    it('should throw an exception when no values or items are provided', () => {
+      const { result } = renderHook(() => useValidation({
+        valueLimit: 40000
+      }))
+
+      const func = () => result.current.compareItems({
+        items: [],
+        values: {}
+      })
+
+      expect(func).toThrowError()
+    })
     it('should return true if the tested item is the same', () => {
       const { result } = renderHook(() => useValidation({
         valueLimit: 40000
@@ -184,6 +203,24 @@ describe('useValidation', () => {
   })
 
   describe('checkValueExceeded', () => {
+    it('should throw error on empty parameters', () => {
+      const { result } = renderHook(() => useValidation({
+        valueLimit: 40000
+      }))
+
+      expect(result.current.checkValueExceed).toThrowError()
+    })
+    it('should throw error if no value or items are provided', () => {
+      const { result } = renderHook(() => useValidation({
+        valueLimit: 40000
+      }))
+
+      const func = () => result.current.checkValueExceed({
+        items: []
+      })
+
+      expect(func).toThrowError()
+    })
     it('should return false if not exceeding', () => {
       const { result } = renderHook(() => useValidation({
         valueLimit: 40000
@@ -221,6 +258,25 @@ describe('useValidation', () => {
       })
 
       expect(value).toBeTruthy()
+    })
+    it('should return false if not exceeding while value is a string', () => {
+      const { result } = renderHook(() => useValidation({
+        valueLimit: 40000
+      }))
+
+      const mockItems = new Array(10).fill({
+        name: 'test',
+        category: 1,
+        price: '001000',
+        purchaseDate: DateTime.now().toISODate()
+      })
+
+      const value = result.current.checkValueExceed({
+        items: mockItems,
+        value: '002000'
+      })
+
+      expect(value).toBeFalsy()
     })
   })
 })
