@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/native'
 import { View } from 'react-native'
-import { map } from 'lodash'
+import { map, isEmpty, get } from 'lodash'
+import DateTimePickerModal from 'react-native-modal-datetime-picker'
 
 import Picker from '../../atoms/Picker'
 import TextField from '../../atoms/TextField'
-import InputLabel from '../../atoms/InputLabel'
+import Label from '../../atoms/Label'
+import DatePicker from '../../atoms/DatePicker'
+import DocumentBox from '../DocumentBox'
 
-const AppInput = ({ label, picker, value, options, ...props }) => {
+const AppInput = ({ label, picker, date, document, options, ...props }) => {
   if (picker) {
     const items = map(options, ({ value, label }) => ({
       label,
@@ -17,20 +20,29 @@ const AppInput = ({ label, picker, value, options, ...props }) => {
 
     return (
       <Picker
-        placeholder={label}
         items={items}
-        value={value}
+        placeholder={label}
         {...props} />
     )
   }
 
-  return <TextField label={label} value={value} {...props} />
+  if (document) {
+    return <DocumentBox text={label} {...props} />
+  }
+
+  if (date) {
+    return <DatePicker label={label} {...props} />
+  }
+
+  return <TextField label={label} {...props} />
 }
 
 AppInput.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
+  date: PropTypes.bool,
   picker: PropTypes.bool,
+  document: PropTypes.bool,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired
@@ -40,9 +52,10 @@ AppInput.propTypes = {
 AppInput.defaultProps = {
   label: '',
   value: '',
+  date: false,
   options: [],
   picker: false,
-  onChange: () => {}
+  document: false
 }
 
 const InputWrapper = styled(View)`
@@ -52,11 +65,16 @@ const InputWrapper = styled(View)`
 const FormInput = ({ label, error, ...props }) => {
   return (
     <InputWrapper>
-      <InputLabel label={label} />
+      {!isEmpty(label) && (
+        <Label paddingBottom={true} type='content' size='xs' color='blueyGrey'>{label}</Label>
+      )}
       <AppInput
         testID='form-input'
         label={label}
         {...props} />
+      {!isEmpty(error) && (
+        <Label paddingTop={true} type='content' size='xs' color='red'>{error}</Label>
+      )}
     </InputWrapper>
   )
 }

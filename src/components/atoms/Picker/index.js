@@ -8,7 +8,7 @@ import theme from '../../../config/theme'
 
 const { width, height } = Dimensions.get('window')
 
-const Picker = ({ style, placeholder, ...props }) => {
+const Picker = ({ style, placeholder, disabled, ...props }) => {
   const containerStyle = {
     position: 'relative',
     minWidth: '100%',
@@ -20,7 +20,7 @@ const Picker = ({ style, placeholder, ...props }) => {
   }
 
   const commonInput = {
-    color: get(theme, 'colors.paleGreyThree', 'rgb(222, 224, 230)'),
+    color: get(theme, 'colors.black', 'rgb(222, 224, 230)'),
     fontFamily: 'Avenir-Roman',
     fontSize: 16,
     ...get(style, 'inputStyle', {})
@@ -30,7 +30,7 @@ const Picker = ({ style, placeholder, ...props }) => {
     ...style,
     placeholder: {
       padding: 0,
-      color: get(theme, 'colors.paleGreyThree', 'rgb(222, 224, 230)'),
+      color: get(theme, 'colors.blueyGrey', 'rgb(222, 224, 230)'),
       ...get(style, 'placeholder', {})
     },
     viewContainer: {
@@ -54,9 +54,11 @@ const Picker = ({ style, placeholder, ...props }) => {
       ...get(style, 'inputAndroid', {})
     }
   }
-  const pickerPlaceholder = isEmpty(placeholder) ? {} : { label: placeholder, value: null }
+  const pickerPlaceholder = isEmpty(placeholder) ? {} : { label: placeholder, value: 0 }
+
   return (
     <RNPickerSelect
+      disabled={disabled}
       style={customStyle}
       fixAndroidTouchableBug={true}
       useNativeAndroidPickerStyle={false}
@@ -69,7 +71,8 @@ Picker.propTypes = {
   items: PropTypes.array.isRequired,
   onValueChange: PropTypes.func.isRequired,
   style: PropTypes.object,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  disabled: PropTypes.bool
 }
 
 Picker.defaultProps = {

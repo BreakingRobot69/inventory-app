@@ -3,30 +3,40 @@ import PropTypes from 'prop-types'
 import styled, { useTheme } from 'styled-components/native'
 import { get, isEmpty } from 'lodash'
 
-import Touchable from '../../atoms/Touchable'
 import { Ionicons } from '@expo/vector-icons'
 import Text from '../../atoms/Text'
+import { Image } from 'react-native'
+import Box from '../../atoms/Box'
 
-const Box = styled(Touchable)`
+const ActionImage = styled(Image)`
   width: 128px;
   height: 128px;
+  overflow: hidden;
+  resizeMode: cover;
   border-radius: 5px;
-  align-items: center;
-  border-width: 1.5px;
-  border-style: dashed;
-  align-self: ${({ align = 'auto' }) => align};
-  justify-content: center;
-  border-color: ${({ theme, borderColor }) => get(theme, `colors.${borderColor}`, borderColor)};
 `
 
-const ActionBox = ({ text, align, onPress, icon, iconSize, iconColor, borderColor, textProps }) => {
+const ActionBox = ({ text, image, alignSelf, onPress, icon, iconSize, iconColor, borderColor, textProps, ...props }) => {
   const theme = useTheme()
+
+  if (!isEmpty(image)) {
+    return (
+      <Box
+        alignSelf={alignSelf}
+        onPress={onPress}
+        borderColor='transparent'
+        {...props}>
+        <ActionImage source={{ uri: image }} />
+      </Box>
+    )
+  }
 
   return (
     <Box
-      align={align}
+      alignSelf={alignSelf}
       onPress={onPress}
-      borderColor={borderColor}>
+      borderColor={borderColor}
+      {...props}>
       {!isEmpty(icon) && (
         <Ionicons name={icon} size={iconSize} color={get(theme, `colors.${iconColor}`)} />
       )}
@@ -38,10 +48,11 @@ const ActionBox = ({ text, align, onPress, icon, iconSize, iconColor, borderColo
 }
 
 ActionBox.propTypes = {
-  align: PropTypes.string,
+  image: PropTypes.string,
   onPress: PropTypes.func,
   text: PropTypes.string,
   icon: PropTypes.string,
+  alignSelf: PropTypes.string,
   iconSize: PropTypes.number,
   textProps: PropTypes.object,
   iconColor: PropTypes.string,
@@ -49,7 +60,8 @@ ActionBox.propTypes = {
 }
 
 ActionBox.defaultProps = {
-  align: 'auto',
+  image: '',
+  alignSelf: 'center',
   onPress: () => {},
   text: 'Placeholder',
   iconSize: 32,

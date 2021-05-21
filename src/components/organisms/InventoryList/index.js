@@ -1,12 +1,14 @@
 import * as React from 'react'
 import PropTypes from 'prop-types'
 import { FlatList } from 'react-native'
-import InventoryCard from '../../molecules/InventoryCard'
+import CardItem from '../../molecules/CardItem'
 
 const renderItem = ({ item }) => {
-  const { image, name, price } = item
+  const { id, image, name, price } = item
 
-  return <InventoryCard image={image} title={name} subtitle={price} />
+  const formattedPrice = `${price} €`
+
+  return <CardItem key={id} image={image} title={name} subtitle={formattedPrice} />
 }
 
 const InventoryList = ({ items }) => {

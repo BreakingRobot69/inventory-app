@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components/native'
+import styled, { useTheme } from 'styled-components/native'
 import { TextInput as NativeTextInput } from 'react-native'
 import { get } from 'lodash'
-import { useTheme } from '@react-navigation/native'
 
 const TextInput = styled(NativeTextInput)`
   font-family: ${({ type = 'input', theme }) => get(theme, `fonts.${type}`, 'Avenir-Roman')};

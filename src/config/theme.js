@@ -13,7 +13,8 @@ const theme = {
     paleGreyThree: 'rgb(222, 224, 230)',
     paleGrey: 'rgb(246, 247, 252)',
     blueyGrey: 'rgb(147, 153, 172)',
-    blue: 'rgb(0, 66, 218)'
+    blue: 'rgb(0, 66, 218)',
+    red: 'rgb(255, 0, 51)'
   },
   fontSize: {
     xs: 11,

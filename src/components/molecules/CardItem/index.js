@@ -13,7 +13,7 @@ const ItemWrapper = styled(View)`
 `
 
 const CardImage = styled(Image)`
-  width: auto;
+  width: 160px;
   height: 160px;
   overflow: hidden;
   resizeMode: cover;
@@ -29,10 +29,10 @@ const CardContent = styled(View)`
   padding-bottom: 16px;
 `
 
-const CardItem = ({ image, title, subtitle }) => {
+const CardItem = ({ image, title, subtitle, ...props }) => {
   return (
     <ItemWrapper>
-      <Card>
+      <Card {...props}>
         {!isEmpty(image) && (
           <CardImage
             source={{ uri: image }}

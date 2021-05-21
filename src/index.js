@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { registerRootComponent } from 'expo'
 import { enableScreens } from 'react-native-screens'
 import { ThemeProvider } from 'styled-components/native'
+import { AppearanceProvider } from 'react-native-appearance'
 import { PersistGate } from 'redux-persist/integration/react'
 import { ActionSheetProvider } from '@expo/react-native-action-sheet'
 import 'react-native-gesture-handler'
@@ -20,9 +21,11 @@ const App = () => {
         loading={null}
         persistor={persistor}>
         <ThemeProvider theme={theme}>
-          <ActionSheetProvider>
-            <Navigation />
-          </ActionSheetProvider>
+          <AppearanceProvider>
+            <ActionSheetProvider>
+              <Navigation />
+            </ActionSheetProvider>
+          </AppearanceProvider>
         </ThemeProvider>
       </PersistGate>
     </Provider>

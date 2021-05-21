@@ -10,6 +10,7 @@ export default {
   orientation: 'portrait',
   icon: './assets/icon.png',
   backgroundColor: '#000000',
+  userInterfaceStyle: 'auto',
   updates: {
     fallbackToCacheTimeout: 0
   },
