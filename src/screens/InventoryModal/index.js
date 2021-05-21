@@ -88,16 +88,14 @@ const InventoryModal = () => {
     }, [navigation]))
 
   return (
-    <Container edges={['right', 'bottom', 'left']}>
-      <ItemForm
-        values={values}
-        errors={errors}
-        handleBlur={handleBlur}
-        submitCount={submitCount}
-        textInputs={itemTextInputs}
-        setFieldValue={setFieldValue}
-        documentInputs={documentInputs} />
-    </Container>
+    <ItemForm
+      values={values}
+      errors={errors}
+      handleBlur={handleBlur}
+      submitCount={submitCount}
+      textInputs={itemTextInputs}
+      setFieldValue={setFieldValue}
+      documentInputs={documentInputs} />
   )
 }
 
