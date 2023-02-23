@@ -21,10 +21,10 @@ export default {
   ios: {
     requireFullScreen: true,
     bundleIdentifier: 'fr.unkwownrobot.inventory',
-    buildNumber: '1.0.0'
+    buildNumber: '1.1.0'
   },
   android: {
     package: 'fr.unkwownrobot.inventory',
-    versionCode: 1
+    versionCode: 2
   }
 }
